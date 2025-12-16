@@ -11,4 +11,5 @@ My solutions for the DevOps with Kubernetes course.
 * [1.4.](./the_project)
 * [1.5.](./the_project)
 * [1.6.](./the_project)
+* [1.7.](./log_output)
 
