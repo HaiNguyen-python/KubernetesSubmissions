@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-app
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      containers:
+        - name: todo-app
+          # Replace with your Docker Hub username
+          image: hainguyen95/todo-app:v1
+          # Define the PORT environment variable here
+          env:
+            - name: PORT
+              value: "5000"
