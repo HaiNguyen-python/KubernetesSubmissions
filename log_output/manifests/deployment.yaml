@@ -12,8 +12,24 @@ spec:
       labels:
         app: log-output
     spec:
+      volumes:
+        - name: shared-logs
+          emptyDir: {}
       containers:
-        - name: log-output
-          image: hainguyen95/log-output:v2
+        # Container 1: Writer (Ghi file)
+        - name: log-output-writer
+          image: hainguyen95/log-output:v3
+          command: ["python", "-u", "writer.py"]
+          volumeMounts:
+            - name: shared-logs
+              mountPath: /usr/src/app/files
+
+        # Container 2: Reader (Đọc file và hiển thị Web)
+        - name: log-output-reader
+          image: hainguyen95/log-output:v3
+          command: ["python", "-u", "reader.py"]
           ports:
             - containerPort: 8000
+          volumeMounts:
+            - name: shared-logs
+              mountPath: /usr/src/app/files
