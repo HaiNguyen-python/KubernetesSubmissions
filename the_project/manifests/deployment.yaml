@@ -14,9 +14,8 @@ spec:
     spec:
       containers:
         - name: todo-app
-          # Replace with your Docker Hub username
+          # Replace with your actual Docker Hub username
           image: hainguyen95/todo-app:v1
-          # Define the PORT environment variable here
           env:
             - name: PORT
               value: "5000"
