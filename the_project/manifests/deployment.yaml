@@ -18,7 +18,7 @@ spec:
             claimName: todo-app-pvc
       containers:
         - name: todo-app
-          image: hainguyen95/todo-app:v3  # Image v3
+          image: hainguyen95/todo-app:v4  # Đổi thành v4
           ports:
             - containerPort: 5000
           env:
