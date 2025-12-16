@@ -14,5 +14,6 @@ spec:
     spec:
       containers:
         - name: log-output
-          # Replace with your actual Docker Hub username/repo
-          image: hainguyen95/log-output:v1
+          image: hainguyen95/log-output:v2
+          ports:
+            - containerPort: 8000
