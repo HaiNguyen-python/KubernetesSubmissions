@@ -1,12 +1,29 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import os
 
-counter = 0
+FILE_PATH = "/usr/src/app/data/pingpong.txt"
+
+# Ensure directory exists
+os.makedirs(os.path.dirname(FILE_PATH), exist_ok=True)
+
+def get_counter():
+    try:
+        with open(FILE_PATH, "r") as f:
+            return int(f.read())
+    except (FileNotFoundError, ValueError):
+        return 0
+
+def save_counter(count):
+    with open(FILE_PATH, "w") as f:
+        f.write(str(count))
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        global counter
         if self.path == "/pingpong":
+            counter = get_counter()
             counter += 1
+            save_counter(counter)
+            
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
             self.end_headers()
