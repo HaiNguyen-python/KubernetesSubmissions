@@ -2,13 +2,9 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 import os
 
-# Danh sách lưu trong RAM
-todos = [
-    "Todo 1: Buy groceries",
-    "Todo 2: Learn Kubernetes"
-]
-
-PORT = 8080
+todos = ["Todo 1: Buy groceries", "Todo 2: Learn Kubernetes"]
+# Lấy PORT từ biến môi trường, mặc định 8080
+PORT = int(os.getenv("PORT", 8080))
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -26,18 +22,14 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 content_length = int(self.headers["Content-Length"])
                 post_data = self.rfile.read(content_length)
-                # Dữ liệu nhận được là JSON: {"todo": "Nội dung"}
                 data = json.loads(post_data.decode())
                 new_todo = data.get("todo")
-
                 if new_todo:
                     todos.append(new_todo)
-                    print(f"Added todo: {new_todo}", flush=True)
                     self.send_response(200)
                 else:
                     self.send_response(400)
-            except Exception as e:
-                print(f"Error: {e}", flush=True)
+            except:
                 self.send_response(500)
             self.end_headers()
         else:

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: log-output-config
+  namespace: exercises
+data:
+  # Nội dung file
+  information.txt: |
+    this text is from file
+  # Giá trị biến môi trường
+  MESSAGE: "hello world"

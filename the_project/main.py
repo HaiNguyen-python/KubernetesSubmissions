@@ -5,14 +5,13 @@ import urllib.request
 import urllib.parse
 import json
 
-PORT = 5000
+# Lấy cấu hình từ biến môi trường
+PORT = int(os.getenv("PORT", 5000))
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8080/todos")
+IMAGE_URL = os.getenv("IMAGE_URL", "https://picsum.photos/1200")
+
 IMAGE_DIR = "/usr/src/app/files"
 IMAGE_PATH = os.path.join(IMAGE_DIR, "image.jpg")
-IMAGE_URL = "https://picsum.photos/1200"
-
-# Địa chỉ Backend (Tên Service trong K8s)
-BACKEND_URL = "http://todo-backend-svc:2345/todos"
-
 os.makedirs(IMAGE_DIR, exist_ok=True)
 
 def get_image():
@@ -47,8 +46,6 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/":
             get_image()
             todos = get_todos()
-
-            # Tạo danh sách HTML từ dữ liệu backend
             todo_list_html = ""
             for todo in todos:
                 todo_list_html += f"<li>{todo}</li>"
@@ -62,22 +59,17 @@ class Handler(BaseHTTPRequestHandler):
             <body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
                 <h1>The project App</h1>
                 <img src="/image.jpg" style="max-width: 400px; height: auto; border-radius: 10px;">
-
                 <form action="/" method="POST" style="margin-top: 20px;">
                     <input type="text" name="todo" maxlength="140" placeholder="Enter a todo..." style="padding: 5px;">
                     <input type="submit" value="Create TODO" style="padding: 5px;">
                 </form>
-
                 <div style="margin-top: 20px; display: inline-block; text-align: left;">
-                    <ul>
-                        {todo_list_html}
-                    </ul>
+                    <ul>{todo_list_html}</ul>
                 </div>
             </body>
             </html>
             """
             self.wfile.write(html.encode())
-
         elif self.path == "/image.jpg":
             if os.path.exists(IMAGE_PATH):
                 self.send_response(200)
@@ -96,14 +88,10 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/":
             content_length = int(self.headers["Content-Length"])
             post_data = self.rfile.read(content_length).decode("utf-8")
-            # Parse form data (name=value)
             parsed_data = urllib.parse.parse_qs(post_data)
             todo_text = parsed_data.get("todo", [""])[0]
-
             if todo_text:
                 create_todo(todo_text)
-
-            # Refresh lại trang
             self.send_response(303)
             self.send_header("Location", "/")
             self.end_headers()

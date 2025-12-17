@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: log-output-dep
+  namespace: exercises
 spec:
   replicas: 1
   selector:
@@ -15,8 +16,12 @@ spec:
       volumes:
         - name: shared-logs
           emptyDir: {}
+        # Volume từ ConfigMap
+        - name: config-vol
+          configMap:
+            name: log-output-config
       containers:
-        # Container Writer
+        # Container Writer (Giữ nguyên)
         - name: log-output-writer
           image: hainguyen95/log-output:v3 
           command: ["python", "-u", "writer.py"]
@@ -24,12 +29,20 @@ spec:
             - name: shared-logs
               mountPath: /usr/src/app/files
 
-        # Container Reader
+        # Container Reader (Cập nhật Env và Mount)
         - name: log-output-reader
-          image: hainguyen95/log-output:v5 # Image v5 mới
+          image: hainguyen95/log-output:v6 # Image v6
           command: ["python", "-u", "reader.py"]
           ports:
             - containerPort: 8000
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: log-output-config
+                  key: MESSAGE
           volumeMounts:
             - name: shared-logs
               mountPath: /usr/src/app/files
+            - name: config-vol
+              mountPath: /usr/src/app/config
