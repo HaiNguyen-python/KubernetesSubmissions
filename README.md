@@ -1,9 +1,7 @@
 # Kubernetes Submissions
 
 My solutions for the DevOps with Kubernetes course.
-
 ## Exercises
-
 ### Chapter 1
 * [1.1.](./log_output)
 * [1.2.](./the_project)
@@ -18,7 +16,6 @@ My solutions for the DevOps with Kubernetes course.
 * [1.11.](./log_output)
 * [1.12.](./the_project)
 * [1.13.](./the_project)
-
 ### Chapter 2
 * [2.1.](./log_output)
 * [2.2.](./the_project)
@@ -29,13 +26,7 @@ My solutions for the DevOps with Kubernetes course.
 * [2.7.](./ping_pong)
 * [2.8.](./the_project)
 * [2.9.](./the_project)
-
-
 * [2.10.](./the_project)
-
-
 ## Chapter 3
-
 * [3.1.](./ping_pong)
-* [3.2.](./log_output)
 * [3.2.](./log_output)
