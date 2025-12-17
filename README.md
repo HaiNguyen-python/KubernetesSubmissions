@@ -27,4 +27,6 @@ My solutions for the DevOps with Kubernetes course.
 * [2.5.](./log_output)
 * [2.6.](./the_project)
 * [2.7.](./ping_pong)
+* [2.8.](./the_project)
+* [2.9.](./the_project)
 
