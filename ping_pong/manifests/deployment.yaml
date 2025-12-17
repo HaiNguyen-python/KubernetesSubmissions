@@ -14,13 +14,6 @@ spec:
     spec:
       containers:
         - name: ping-pong
-          image: hainguyen95/ping-pong:v2 # Image v2 mới
+          image: hainguyen95/ping-pong:v3 # Image v3 mới
           ports:
             - containerPort: 5000
-          volumeMounts:
-            - name: shared-data
-              mountPath: /usr/src/app/data
-      volumes:
-        - name: shared-data
-          persistentVolumeClaim:
-            claimName: ping-pong-pvc

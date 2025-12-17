@@ -13,13 +13,10 @@ spec:
         app: log-output
     spec:
       volumes:
-        - name: shared-logs    # Volume nội bộ (giữa Reader & Writer)
+        - name: shared-logs
           emptyDir: {}
-        - name: ping-pong-data # Volume chung với Ping-pong (PVC)
-          persistentVolumeClaim:
-            claimName: ping-pong-pvc
       containers:
-        # Container Writer (Giữ nguyên)
+        # Container Writer
         - name: log-output-writer
           image: hainguyen95/log-output:v3 
           command: ["python", "-u", "writer.py"]
@@ -27,14 +24,12 @@ spec:
             - name: shared-logs
               mountPath: /usr/src/app/files
 
-        # Container Reader (Cập nhật image v4 và mount thêm PVC)
+        # Container Reader
         - name: log-output-reader
-          image: hainguyen95/log-output:v4
+          image: hainguyen95/log-output:v5 # Image v5 mới
           command: ["python", "-u", "reader.py"]
           ports:
             - containerPort: 8000
           volumeMounts:
             - name: shared-logs
               mountPath: /usr/src/app/files
-            - name: ping-pong-data
-              mountPath: /usr/src/app/data

@@ -19,3 +19,6 @@ My solutions for the DevOps with Kubernetes course.
 * [1.12.](./the_project)
 * [1.13.](./the_project)
 
+### Chapter 2
+* [2.1.](./log_output)
+
