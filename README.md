@@ -30,3 +30,4 @@ My solutions for the DevOps with Kubernetes course.
 ## Chapter 3
 * [3.1.](./ping_pong)
 * [3.2.](./log_output)
+* [3.3.](./ping_pong)
