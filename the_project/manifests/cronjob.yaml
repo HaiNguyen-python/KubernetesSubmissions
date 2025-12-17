@@ -1,0 +1,29 @@
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: wiki-todo-generator
+  namespace: project
+spec:
+  # Schedule: Run at the start of every hour
+  schedule: "0 * * * *" 
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: generator
+            image: curlimages/curl
+            command:
+            - /bin/sh
+            - -c
+            - |
+              # Get the final redirected URL from Wikipedia
+              WIKI_URL=$(curl -s -I -o /dev/null -w "%{redirect_url}" https://en.wikipedia.org/wiki/Special:Random)
+              
+              # Send the URL to the Todo Backend service
+              # Note: Use the service name and port defined in your previous exercises
+              curl -X POST -H "Content-Type: application/json" \
+                   -d "{\"todo\": \"Read $WIKI_URL\"}" \
+                   http://todo-backend-svc:2345/todos
+          restartPolicy: OnFailure
