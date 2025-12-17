@@ -15,9 +15,15 @@ spec:
     spec:
       containers:
         - name: todo-backend
-          image: hainguyen95/todo-backend:v2
+          image: hainguyen95/todo-backend:v3
           ports:
             - containerPort: 8080
           env:
             - name: PORT
               value: "8080"
+            # Truyền mật khẩu từ Secret đã tạo
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pw
+                  key: POSTGRES_PASSWORD
