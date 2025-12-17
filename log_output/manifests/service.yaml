@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: log-output-svc
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: log-output
   ports:
