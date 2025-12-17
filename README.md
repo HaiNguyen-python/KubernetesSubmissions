@@ -22,4 +22,5 @@ My solutions for the DevOps with Kubernetes course.
 ### Chapter 2
 * [2.1.](./log_output)
 * [2.2.](./the_project)
+* [2.3.](./log_output)
 
