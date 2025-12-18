@@ -40,3 +40,6 @@
 * [3.10.](./the_project)
 * [3.11.](./the_project)
 * [3.12.](./the_project)
+
+## Chapter 4
+* [4.1.](./the_project)
