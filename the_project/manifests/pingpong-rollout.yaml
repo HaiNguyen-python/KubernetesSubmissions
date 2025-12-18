@@ -1,0 +1,26 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: pingpong-rollout
+  namespace: project
+spec:
+  replicas: 1
+  strategy:
+    canary:
+      analysis:
+        templates:
+        - templateName: cpu-usage-analysis
+      steps:
+      - setWeight: 50
+      - pause: {duration: 5m}
+  selector:
+    matchLabels:
+      app: pingpong
+  template:
+    metadata:
+      labels:
+        app: pingpong
+    spec:
+      containers:
+      - name: pingpong
+        image: gcr.io/project-5537670b-93d7-476f-9b4/ping-pong:v4.1
