@@ -21,3 +21,15 @@
 | **Costs** | Higher monthly fee for managed overhead. | Lower raw infrastructure cost. |
 | **Maintenance** | Minimal. Cloud provider handles patches/OS. | High. User handles all updates and security. |
 | **Backup** | Built-in, automated, and reliable. | Manual. Requires custom scripts/tools (Velero). |
+
+* [3.9.](./the_project)
+
+## Exercise 3.9: DBaaS vs DIY Comparison
+
+| Feature | DBaaS (e.g., Google Cloud SQL) | DIY (Database on K8s) |
+| :--- | :--- | :--- |
+| **Initial Work** | Easy. Provisioned via API/Console in minutes. | High. Requires StatefulSet, PV/PVC, and Service config. |
+| **Initial Cost** | Higher due to managed service overhead. | Lower raw infrastructure cost. |
+| **Maintenance** | Minimal. Provider handles OS/DB patching. | High. You manage updates, security, and scaling. |
+| **Backup/Restore** | Automated, point-in-time recovery built-in. | Manual. Requires tools like Velero or custom scripts. |
+| **Ease of Use** | Very high. Specialized dashboards provided. | Medium. Requires K8s and DB admin expertise. |
