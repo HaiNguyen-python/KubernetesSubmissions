@@ -46,3 +46,5 @@
 | **Maintenance** | Minimal. Provider handles OS/DB patches. | High. You handle all updates and security. |
 | **Backup** | Automated & built-in. | Manual. Requires custom scripts/tools. |
 | **Cost** | Higher (Service fee included). | Lower (Raw resource cost only). |
+
+* [3.10.](./the_project)

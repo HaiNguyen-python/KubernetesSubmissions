@@ -1,0 +1,35 @@
+﻿apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: todo-backup-cronjob
+  namespace: project
+spec:
+  schedule: "0 0 * * *" # Chạy vào lúc 00:00 mỗi ngày (24 giờ một lần)
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: default
+          containers:
+          - name: postgres-backup
+            image: google/cloud-sdk:slim
+            env:
+            - name: PGHOST
+              value: postgres-service
+            - name: PGDATABASE
+              value: todo
+            - name: PGUSER
+              value: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-password
+                  key: password
+            command:
+            - /bin/bash
+            - -c
+            - |
+              apt-get update && apt-get install -y postgresql-client
+              # Backup và upload trực tiếp lên GCS nhờ Workload Identity
+              pg_dump | gsutil cp - gs://hainguyen-project-backup-bucket/backup-$(date +%Y-%m-%d).sql
+          restartPolicy: OnFailure
