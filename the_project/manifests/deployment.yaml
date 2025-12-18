@@ -1,34 +1,25 @@
-apiVersion: apps/v1
+﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-app-dep
+  name: todo-backend
   namespace: project
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: todo-app
+      app: todo-backend
   template:
     metadata:
       labels:
-        app: todo-app
+        app: todo-backend
     spec:
-      volumes:
-        - name: todo-image-storage
-          persistentVolumeClaim:
-            claimName: todo-app-pvc
       containers:
-        - name: todo-app
-          image: hainguyen95/todo-app:v6
-          ports:
-            - containerPort: 5000
-          env:
-            - name: PORT
-              value: "5000"
-            - name: BACKEND_URL
-              value: "http://todo-backend-svc:2345/todos"
-            - name: IMAGE_URL
-              value: "https://picsum.photos/1200"
-          volumeMounts:
-            - name: todo-image-storage
-              mountPath: /usr/src/app/files
+      - name: todo-backend
+        image: gcr.io/project-5537670b-93d7-476f-9b4/todo-backend:latest
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "200m"
+            memory: "128Mi"
