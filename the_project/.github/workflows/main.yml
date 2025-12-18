@@ -6,6 +6,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
       - uses: actions/checkout@v4
       - uses: google-github-actions/auth@v2
@@ -18,10 +21,8 @@ jobs:
           location: europe-north1-b
       - name: Create and Deploy to dynamic namespace
         run: |
-          # Nếu là nhánh main, deploy vào namespace 'project' theo yêu cầu
           NAMESPACE=${{ github.ref_name }}
           if [ "$NAMESPACE" == "main" ]; then NAMESPACE="project"; fi
-          
           kubectl create namespace $NAMESPACE || true
           kubectl config set-context --current --namespace=$NAMESPACE
           kubectl apply -k manifests/overlays/gke
