@@ -33,3 +33,12 @@
 | **Maintenance** | Minimal. Provider handles OS/DB patching. | High. You manage updates, security, and scaling. |
 | **Backup/Restore** | Automated, point-in-time recovery built-in. | Manual. Requires tools like Velero or custom scripts. |
 | **Ease of Use** | Very high. Specialized dashboards provided. | Medium. Requires K8s and DB admin expertise. |
+
+## Exercise 3.9: DBaaS vs DIY Comparison
+
+| Feature | DBaaS (e.g., Google Cloud SQL) | DIY (Database on K8s) |
+| :--- | :--- | :--- |
+| **Initial Work** | Easy. Fast provisioning via Cloud Console. | High. Must manage StatefulSets and Storage. |
+| **Maintenance** | Minimal. Provider handles updates/patches. | High. You handle OS/DB security and updates. |
+| **Backup** | Automated & built-in. | Manual. Requires custom tools (e.g. Velero). |
+| **Cost** | Higher (Service fee included). | Lower (Raw resource cost only). |
