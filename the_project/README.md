@@ -42,3 +42,5 @@
 | **Maintenance** | Minimal. Provider handles updates/patches. | High. You handle OS/DB security and updates. |
 | **Backup** | Automated & built-in. | Manual. Requires custom tools (e.g. Velero). |
 | **Cost** | Higher (Service fee included). | Lower (Raw resource cost only). |
+
+* [3.9.](./the_project)
