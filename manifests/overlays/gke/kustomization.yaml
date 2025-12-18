@@ -1,0 +1,11 @@
+resources:
+- ../../base
+namespace: exercises
+patches:
+- target:
+    kind: Service
+    name: todo-svc
+  patch: |-
+    - op: replace
+      path: /spec/type
+      value: NodePort
