@@ -6,18 +6,20 @@ on:
 jobs:
   delete-namespace:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
-      - uses: google-github-actions/auth@v2
+      - uses: 'google-github-actions/auth@v2'
         with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: github-actions-sa@project-5537670b-93d7-476f-9b4.iam.gserviceaccount.com
-      - uses: google-github-actions/get-gke-credentials@v2
+          workload_identity_provider: '${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: 'github-actions-sa@project-5537670b-93d7-476f-9b4.iam.gserviceaccount.com'
+      - uses: 'google-github-actions/get-gke-credentials@v2'
         with:
-          cluster_name: dwk-cluster
-          location: europe-north1-b
-      - name: Delete Namespace
+          cluster_name: 'dwk-cluster'
+          location: 'europe-north1-b'
+      - name: 'Delete Namespace'
         run: |
-          # Lấy tên nhánh vừa bị xóa
           NAMESPACE=${{ github.event.ref }}
           echo "Deleting namespace: $NAMESPACE"
           kubectl delete namespace $NAMESPACE || true
