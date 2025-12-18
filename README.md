@@ -35,6 +35,3 @@ My solutions for the DevOps with Kubernetes course.
 * [3.5.](./the_project)
 * [3.6.](./the_project)
 * [3.7.](./the_project)
-<<<<<<< HEAD
-=======
->>>>>>> branch-test-3-7
