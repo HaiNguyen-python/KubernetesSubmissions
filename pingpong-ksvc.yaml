@@ -1,0 +1,13 @@
+﻿apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ping-pong-serverless
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        # Sử dụng image v3.4 từ Docker Desktop của bạn
+        - image: hainguyen95/pingpong:v3.4
+          ports:
+            - containerPort: 8080
