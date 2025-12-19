@@ -1,0 +1,18 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: main-project-gitops
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/HaiNguyen-python/KubernetesSubmissions.git
+    targetRevision: HEAD
+    path: the_project/manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: project # Đồng bộ vào namespace project
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
