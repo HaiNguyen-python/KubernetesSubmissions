@@ -1,28 +1,18 @@
-name: Deploy to GKE
+﻿name: Deploy to GKE
 on:
   push:
     branches:
-      - '*'
+      - main
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
     steps:
       - uses: actions/checkout@v4
       - uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: github-actions-sa@project-5537670b-93d7-476f-9b4.iam.gserviceaccount.com
-      - uses: google-github-actions/get-gke-credentials@v2
-        with:
-          cluster_name: dwk-cluster
-          location: europe-north1-b
-      - name: Create and Deploy to dynamic namespace
+          credentials_json: ${{ secrets.GKE_SA_KEY }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Deploy
         run: |
-          NAMESPACE=${{ github.ref_name }}
-          if [ "$NAMESPACE" == "main" ]; then NAMESPACE="project"; fi
-          kubectl create namespace $NAMESPACE || true
-          kubectl config set-context --current --namespace=$NAMESPACE
-          kubectl apply -k manifests/overlays/gke
+          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --zone ${{ secrets.GKE_ZONE }}
+          kubectl apply -f the_project/k8s/
