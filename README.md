@@ -55,3 +55,4 @@
 
 ## Chapter 5
 * [5.1.](./the_project)
+* [5.2.](./the_project)
