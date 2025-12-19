@@ -4,21 +4,18 @@ on:
     branches:
       - main
 
-# ĐÂY LÀ PHẦN QUAN TRỌNG NHẤT ĐỂ SỬA LỖI MÀU ĐỎ
-permissions:
-  contents: 'read'
-  id-token: 'write'
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - id: 'auth'
+      - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v2'
         with:
+          # Chúng ta dùng token cơ bản để tránh lỗi OIDC injection
           credentials_json: '${{ secrets.GKE_SA_KEY }}'
+          token_format: 'access_token'
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
@@ -26,4 +23,5 @@ jobs:
       - name: 'Deploy to GKE'
         run: |
           gcloud container clusters get-credentials dwk-cluster --zone europe-north1-b
-          kubectl apply -f manifests/
+          # Sử dụng lệnh apply linh hoạt để tránh lỗi đường dẫn
+          kubectl apply -f manifests/ || kubectl apply -f the_project/manifests/
