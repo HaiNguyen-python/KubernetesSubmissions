@@ -14,5 +14,5 @@ jobs:
       - uses: google-github-actions/setup-gcloud@v2
       - name: Deploy
         run: |
-          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --zone ${{ secrets.GKE_ZONE }}
-          kubectl apply -f the_project/k8s/
+          gcloud container clusters get-credentials dwk-cluster --zone europe-north1-b
+          kubectl apply -f manifests/
