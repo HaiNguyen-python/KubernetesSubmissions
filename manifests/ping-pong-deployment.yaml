@@ -15,7 +15,6 @@ spec:
     spec:
       containers:
       - name: pingpong
-        # Kiểm tra kỹ Project ID của bạn trong link này
         image: gcr.io/project-5537670b-93d7-476f-9b4/ping-pong:v4.1
         ports:
         - containerPort: 8080
