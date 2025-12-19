@@ -4,21 +4,26 @@ on:
     branches:
       - main
 
-# Thêm khối này để sửa lỗi "did not inject ACTIONS_ID_TOKEN"
+# PHẢI CÓ KHỐI NÀY ĐỂ SỬA LỖI ACTIONS_ID_TOKEN
 permissions:
-  contents: read
-  id-token: write
+  contents: 'read'
+  id-token: 'write'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: google-github-actions/auth@v2
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
         with:
-          credentials_json: ${{ secrets.GKE_SA_KEY }}
-      - uses: google-github-actions/setup-gcloud@v2
-      - name: Deploy
+          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: 'Deploy to GKE'
         run: |
           gcloud container clusters get-credentials dwk-cluster --zone europe-north1-b
           kubectl apply -f manifests/
