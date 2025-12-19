@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: broadcaster
-        image: hainguyen95/pingpong:v3.4 # Dùng tạm image này hoặc image broadcaster của bạn
+        image: hainguyen95/pingpong:v3.4 
