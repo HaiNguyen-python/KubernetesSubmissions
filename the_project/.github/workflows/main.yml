@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - main
+
+# Thêm khối này để sửa lỗi "did not inject ACTIONS_ID_TOKEN"
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
