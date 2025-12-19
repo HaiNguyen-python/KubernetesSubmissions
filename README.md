@@ -1,7 +1,9 @@
 ﻿# Kubernetes Submissions
 
-## GKE Application Link
-* **Live App trên GKE:** [http://34.118.232.203](http://34.118.232.203)
+## Project Status & GKE Link
+* **Application URL:** [http://34.118.232.203](http://34.118.232.203)
+* **Architecture:** Knative Serving (Serverless).
+* **Test Command:** `curl.exe -H "Host: ping-pong-serverless.default.sslip.io" http://localhost:8081`
 
 ## Chapter 1
 * [1.1.](./the_project)

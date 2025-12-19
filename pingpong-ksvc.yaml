@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-        # Sử dụng image v3.4 từ Docker Desktop của bạn
+        # Using version v3.4 from your Docker Desktop image list
         - image: hainguyen95/pingpong:v3.4
           ports:
             - containerPort: 8080
