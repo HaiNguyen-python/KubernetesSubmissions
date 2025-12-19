@@ -1,5 +1,8 @@
 ﻿# Kubernetes Submissions
 
+## GKE Application Link
+* **Live App trên GKE:** [http://34.118.232.203](http://34.118.232.203)
+
 ## Chapter 1
 * [1.1.](./the_project)
 * [1.2.](./the_project)
@@ -61,3 +64,4 @@
 * [5.5.](./the_project)
 * [5.6.](./the_project)
 * [5.7.](./the_project)
+* [5.8.](./the_project)
