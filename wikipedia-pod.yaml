@@ -1,0 +1,32 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: wikipedia-pod
+spec:
+  volumes:
+  - name: shared-data
+    emptyDir: {}
+  
+  initContainers:
+  - name: init-wiki
+    image: curlimages/curl
+    command: ["sh", "-c", "curl -L https://en.wikipedia.org/wiki/Kubernetes > /usr/share/nginx/html/index.html"]
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+
+  - name: sidecar-wiki
+    image: curlimages/curl
+    command: ["sh", "-c", "while true; do SLEEP=$(( (RANDOM % 601) + 300 )); echo Sleeping $SLEEP s; sleep $SLEEP; curl -L https://en.wikipedia.org/wiki/Special:Random > /usr/share/nginx/html/index.html; done"]
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
