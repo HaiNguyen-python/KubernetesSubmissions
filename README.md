@@ -5,61 +5,61 @@
 * **Note:** Access via `curl -H "Host: ping-pong-serverless.default.sslip.io" http://35.228.137.215`
 
 ## Chapter 1
-* 1.1
-* 1.2
-* 1.3
-* 1.4
-* 1.5
-* 1.6
-* 1.7
-* 1.8
-* 1.9
-* 1.10
-* 1.11
-* 1.12
-* 1.13
+* [1.1](./log-output)
+* [1.2](./log-output)
+* [1.3](./log-output)
+* [1.4](./log-output)
+* [1.5](./log-output)
+* [1.6](./log-output)
+* [1.7](./log-output)
+* [1.8](./log-output)
+* [1.9](./log-output)
+* [1.10](./log-output)
+* [1.11](./log-output)
+* [1.12](./log-output)
+* [1.13](./log-output)
 
 ## Chapter 2
-* 2.1
-* 2.2
-* 2.3
-* 2.4
-* 2.5
-* 2.6
-* 2.7
-* 2.8
-* 2.9
-* 2.10
+* [2.1](./ping-pong)
+* [2.2](./ping-pong)
+* [2.3](./ping-pong)
+* [2.4](./ping-pong)
+* [2.5](./ping-pong)
+* [2.6](./ping-pong)
+* [2.7](./ping-pong)
+* [2.8](./ping-pong)
+* [2.9](./ping-pong)
+* [2.10](./ping-pong)
 
 ## Chapter 3
-* 3.1
-* 3.2
-* 3.3
-* 3.4
-* 3.5
-* 3.6
-* 3.7
-* 3.8
-* 3.9
-* 3.10
+* [3.1](./the_project)
+* [3.2](./the_project)
+* [3.3](./the_project)
+* [3.4](./the_project)
+* [3.5](./the_project)
+* [3.6](./the_project)
+* [3.7](./the_project)
+* [3.8](./the_project)
+* [3.9](./the_project)
+* [3.10](./the_project)
 
 ## Chapter 4
-* 4.1
-* 4.2
-* 4.3
-* 4.4
-* 4.5
-* 4.6
-* 4.7
-* 4.8
+* [4.1](./the_project)
+* [4.2](./the_project)
+* [4.3](./the_project)
+* [4.4](./the_project)
+* [4.5](./the_project)
+* [4.6](./the_project)
+* [4.7](./the_project)
+* [4.8](./the_project)
 
 ## Chapter 5
-* 5.1
-* 5.2
-* 5.3
-* 5.4
-* 5.5
-* 5.6
-* 5.7
-* 5.8
-* 5.9
+* [5.1](./the_project)
+* [5.2](./the_project)
+* [5.3](./the_project)
+* [5.4](./the_project)
+* [5.5](./the_project)
+* [5.6](./the_project)
+* [5.7](./the_project)
+* [5.8](./the_project)
+* [5.9](./the_project)
